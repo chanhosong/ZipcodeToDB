@@ -16,7 +16,9 @@ FORMAT_DATE = "%Y%m%d"
 FORMAT_DATETIME = "%Y%m%d%H%M%S"
 
 # Number of concurrent call
-NUM_PARALLEL = 10
+NUM_WORKER = 10
+NUM_CALL_LIMIT = 10
+
 
 def get_time_str():
     global timestr

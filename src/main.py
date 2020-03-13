@@ -11,11 +11,6 @@ if __name__ == '__main__':
     test_query = "강원도 강릉시 유천동 760-1"
 
     for sido in am.getFileName():
-        call.parallel_run(settings.NUM_PARALLEL, am.makeQuery(sido))
-
-
-    # for sido in am.getFileName():
-    #     for query in am.makeQuery(sido):
-    #         print(am.getMapAdderess(query))
-    #         cl.run(am.getMapAdderess(query))
-    #         time.sleep(10)
+        call.parallel_run(settings.NUM_WORKER,
+                          settings.NUM_CALL_LIMIT,
+                          am.makeQuery(sido))
