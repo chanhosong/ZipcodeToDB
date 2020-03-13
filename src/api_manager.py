@@ -8,7 +8,7 @@ from utils.kakao_open_apis import KakaoOpenAPIs
 
 class ApiManager:
     __logger = log4py.getLogger(__file__, level=settings.DEBUG_LEVEL)
-    __data_path = 'data/zipcode_DB/'
+    __data_path = os.path.dirname(settings.ROOT_DIR) + '/' + settings.DATA_DIR
     __query_column = ['시도', '시군구', '읍면', '건물번호본번', '건물번호부번']
     __kakaoApis = KakaoOpenAPIs()
 
@@ -36,7 +36,7 @@ class ApiManager:
         return list(filter(lambda x: x.endswith('.txt'), os.listdir(self.__data_path)))
 
     def getZipcode(self, sido):
-        return pd.read_csv(self.__data_path + sido, delimiter='|')
+        return pd.read_csv(self.__data_path +sido, delimiter='|')
 
     def totalColumnCount(self):
         cnt = 0

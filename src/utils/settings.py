@@ -1,12 +1,14 @@
 import datetime
 import time
 import os
+from pathlib import Path
 
 # DEBUG LEVEL
 DEBUG_LEVEL = 'debug'
 
 # Settings for Project
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = 'data/zipcode_DB/'
 
 # Date Time Format
 timestr = None

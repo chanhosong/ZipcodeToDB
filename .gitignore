@@ -132,6 +132,6 @@ dmypy.json
 .pyre/
 
 .gitignore
-actor/__pycache__/
+src/actor/__pycache__/
 data/
-utils/__pycache__/
+src/utils/__pycache__/
