@@ -1,5 +1,5 @@
 import pykka
-import api_manager
+from api import open_api_manager
 import utils.settings as settings
 import utils.log4py as log4py
 
@@ -11,7 +11,7 @@ def parallel_run(pool_size, call_limit, queries):
     json_results = []
     for i, query in enumerate(queries):
         if i < call_limit:
-            json_results.append(callers[i % len(callers)].call(query))
+            json_results.append(callers[i % len(callers)].map_address_call(query))
         else:
             pass
 
@@ -25,14 +25,14 @@ def parallel_run(pool_size, call_limit, queries):
 
 
 class Caller(pykka.ThreadingActor):
-    __am = api_manager.ApiManager()
+    __am = open_api_manager.OpenApiManager()
     __logger = log4py.getLogger(__file__, level=settings.DEBUG_LEVEL)
 
-    def call(self, query):
+    def map_address_call(self, query):
         try:
             json = self.__am.getMapAdderess(query)
             self.__logger.debug(f'Success: {json}')
             return json
-        except Exception:
+        except Exception as e:
             self.__logger.debug(f'Failed resolving {query}')
-            return None
+            return e

@@ -1,5 +1,5 @@
 import unittest
-from utils.kakao_open_apis import KakaoOpenAPIs
+from api.kakao_open_apis import KakaoOpenAPIs
 import json
 
 

@@ -1,4 +1,4 @@
-import api_manager
+from api import open_api_manager
 import actor.caller as caller
 import utils.settings as settings
 import utils.log4py as log4py
@@ -6,7 +6,7 @@ import unittest
 
 
 class Test(unittest.TestCase):
-    __am = api_manager.ApiManager()
+    __am = open_api_manager.OpenApiManager()
     __call = caller
     __logger = log4py.getLogger(__file__, level=settings.DEBUG_LEVEL)
     __file_list = ['강원도.txt']
