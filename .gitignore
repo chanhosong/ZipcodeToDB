@@ -134,4 +134,5 @@ dmypy.json
 .gitignore
 src/actor/__pycache__/
 data/
+test/data
 src/utils/__pycache__/
