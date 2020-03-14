@@ -32,14 +32,9 @@ class DBAdder(pykka.ThreadingActor):
         super().__init__()
         self.result = 0
 
-        if not os.path.exists(settings.DATA_DIR_ADDRESS):
-            os.makedirs(settings.DATA_DIR_ADDRESS)
-
     def store_to_mongodb(self, content):
         try:
             res = json.dumps(content, ensure_ascii=False)
-            with open(settings.DATA_DIR_ADDRESS + 'j.json', 'w', encoding='UTF-8-sig') as file:
-                file.write(res + '\n')
 
             self.__logger.debug(f'Success: {res}')
             return True
