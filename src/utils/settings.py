@@ -20,6 +20,11 @@ FORMAT_DATETIME = "%Y%m%d%H%M%S"
 NUM_WORKER = 2
 NUM_CALL_LIMIT = 2
 
+# Settings for MongoDB
+MONGODB_HOST = 'mongodb://localhost:27017/'
+ADDRESS_DATABASE = 'address'
+ESTATE_DATABASE = 'estate'
+
 
 def get_time_str():
     global timestr

@@ -2,3 +2,4 @@ pykka
 urllib3
 pandas
 requests
+pymongo

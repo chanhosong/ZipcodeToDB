@@ -16,17 +16,7 @@ class OpenApiManager:
         self.result = 0
 
     def getMapAdderess(self, query):
-        res_json = json.loads(self.__kakaoApis.getAddress(query))
-        # road_address = res_json['documents'][0]['road_address']
-        # address_name = road_address['address_name']
-        # total_count = res_json['meta']['total_count']
-        # x = road_address['x']
-        # y = road_address['y']
-        # zip_code = road_address['zone_no']
-
-        # self.__logger.debug("road_address={}, zip_code={}, x={}, y={}".format(address_name, zip_code, x, y))
-
-        return res_json
+        return json.loads(self.__kakaoApis.getAddress(query))
 
     def makeQuery(self, sido):
         return list(map(lambda x: '{} {} {} {}-{}'.format(x[0], x[1], x[2], x[3], x[4])
