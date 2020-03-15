@@ -4,17 +4,17 @@ from urllib import request
 from urllib.parse import urlencode
 
 
-class KakaoOpenAPIs:
+class EstateOpenAPIs:
     __logger = log4py.getLogger(__file__, level=settings.DEBUG_LEVEL)
-    __host = 'https://dapi.kakao.com/v2/local/'
+    __host = 'http://apis.data.go.kr/'
     __resApiKey = 'b58d37f7456e74b62b2b8f2a03d57d6b'
 
     def __init__(self):
-        self.__logger.debug("Kakao API Host : {}, Private Key : {}".format(self.__host, self.__resApiKey))
+        self.__logger.debug("Estate API Host : {}, Private Key : {}".format(self.__host, self.__resApiKey))
         self.result = 0
 
-    def getAddress(self, address, page=1, size=10, fmt='json'):
-        api_name = 'search/address.{}?'.format(fmt)
+    def getCnrdlnService(self, address, page=1, size=10, fmt='json'):
+        api_name = '1611000/nsdi/eios/CnrdlnService.{}?'.format(fmt)
         params = urlencode({'query': address, 'page': page, 'size': size})
         header = {'Authorization': 'KakaoAK ' + self.__resApiKey}
         rest_api = self.__host + api_name + params

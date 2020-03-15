@@ -36,6 +36,8 @@ class DBAdder(pykka.ThreadingActor):
         try:
             res = json.dumps(content, ensure_ascii=False)
 
+            # add code to connect to mongodb
+
             self.__logger.debug(f'Success: {res}')
             return True
         except Exception as e:

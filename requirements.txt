@@ -1,3 +1,4 @@
+xmltodict
 pykka
 urllib3
 pandas
