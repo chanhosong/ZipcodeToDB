@@ -37,10 +37,3 @@ def get_time_str():
 def get_date_str():
     global datestr
     return datetime.datetime.fromtimestamp(int(time.time())).strftime(FORMAT_DATE)
-
-
-def init_logs_dir():
-    if not os.path.exists(os.path.dirname(ROOT_DIR) + '/logs/debug'):
-        os.makedirs(os.path.dirname(ROOT_DIR) + '/logs/debug')
-    if not os.path.exists(os.path.dirname(ROOT_DIR) + '/logs/error'):
-        os.makedirs(os.path.dirname(ROOT_DIR) + '/logs/error')

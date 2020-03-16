@@ -1,12 +1,9 @@
 import unittest
-import utils.settings as settings
 from api.kakao_open_apis import KakaoOpenAPIs
 import json
 
 
 class TestKakaoOpenAPIs(unittest.TestCase):
-    settings.init_logs_dir()
-
     def test_get_address(self):
         test_query = "강원도 강릉시 유천동 760-1"
 
