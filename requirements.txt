@@ -4,3 +4,4 @@ urllib3
 pandas
 requests
 pymongo
+log4p

@@ -1,10 +1,10 @@
 from api import open_api_manager
 import utils.settings as settings
-import utils.log4py as log4py
+import log4p
 import actor.caller as caller
 
 if __name__ == '__main__':
-    logger = log4py.getLogger(__file__, level=settings.DEBUG_LEVEL)
+    __logger = log4p.GetLogger(__name__, logging_level=settings.DEBUG_LEVEL, config=settings.LOGGING_CONFIG)
     am = open_api_manager.OpenApiManager()
     call = caller
 

@@ -4,15 +4,18 @@ import os
 from pathlib import Path
 
 # DEBUG LEVEL
-DEBUG_LEVEL = 'debug'
+DEBUG_LEVEL = 'DEBUG'
 
 # Settings for Project
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR_ZIPCODE = 'data/zipcode_DB/'
 DATA_DIR_ADDRESS = 'data/address/'
+LOGGING_CONFIG = os.path.dirname(ROOT_DIR) + '/log4p.json'
+LOGGING_DIR = 'logs/'
 
 # Date Time Format
 timestr = None
+datestr = None
 FORMAT_DATE = "%Y%m%d"
 FORMAT_DATETIME = "%Y%m%d%H%M%S"
 
@@ -28,7 +31,16 @@ ESTATE_DATABASE = 'estate'
 
 def get_time_str():
     global timestr
+    return datetime.datetime.fromtimestamp(int(time.time())).strftime(FORMAT_DATETIME)
 
-    timestr = datetime.datetime.fromtimestamp(int(time.time())).strftime(FORMAT_DATETIME)
 
-    return timestr
+def get_date_str():
+    global datestr
+    return datetime.datetime.fromtimestamp(int(time.time())).strftime(FORMAT_DATE)
+
+
+def init_logs_dir():
+    if not os.path.exists(os.path.dirname(ROOT_DIR) + '/logs/debug'):
+        os.makedirs(os.path.dirname(ROOT_DIR) + '/logs/debug')
+    if not os.path.exists(os.path.dirname(ROOT_DIR) + '/logs/error'):
+        os.makedirs(os.path.dirname(ROOT_DIR) + '/logs/error')

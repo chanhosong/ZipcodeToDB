@@ -3,13 +3,13 @@ import json
 import xmltodict
 import pandas as pd
 import utils.settings as settings
-import utils.log4py as log4py
+import log4p
 from api.kakao_open_apis import KakaoOpenAPIs
 from api.estate_open_apis import EstateOpenAPIs
 
 
 class OpenApiManager:
-    __logger = log4py.getLogger(__file__, level=settings.DEBUG_LEVEL)
+    __logger = log4p.GetLogger(__name__, logging_level=settings.DEBUG_LEVEL, config=settings.LOGGING_CONFIG)
     __data_path = os.path.dirname(settings.ROOT_DIR) + '/' + settings.DATA_DIR_ZIPCODE
     __query_column = ['시도', '시군구', '읍면', '건물번호본번', '건물번호부번']
     __kakao_Apis = KakaoOpenAPIs()

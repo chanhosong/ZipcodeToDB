@@ -1,11 +1,11 @@
 import pykka
 from api import open_api_manager
 import utils.settings as settings
-import utils.log4py as log4py
+import log4p
 
 
 def parallel_run(pool_size, call_limit, queries):
-    logger = log4py.getLogger(__file__, level=settings.DEBUG_LEVEL)
+    __logger = log4p.GetLogger(__name__, logging_level=settings.DEBUG_LEVEL, config=settings.LOGGING_CONFIG)
     callers = [Caller.start().proxy() for _ in range(pool_size)]
 
     json_results = []
@@ -19,20 +19,20 @@ def parallel_run(pool_size, call_limit, queries):
 
     pykka.ActorRegistry.stop_all()
 
-    logger.debug(gathered_results)
+    __logger.logger.debug(gathered_results)
 
     return gathered_results
 
 
 class Caller(pykka.ThreadingActor):
     __am = open_api_manager.OpenApiManager()
-    __logger = log4py.getLogger(__file__, level=settings.DEBUG_LEVEL)
+    __logger = log4p.GetLogger(__name__, logging_level=settings.DEBUG_LEVEL, config=settings.LOGGING_CONFIG)
 
     def map_address_call(self, query):
         try:
             json = self.__am.getMapAdderess(query)
-            self.__logger.debug(f'Success: {json}')
+            self.__logger.logger.debug(f'Success: {json}')
             return json
         except Exception as e:
-            self.__logger.debug(f'Failed resolving {query}')
+            self.__logger.logger.debug(f'Failed resolving {query}')
             return e

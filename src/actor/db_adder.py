@@ -1,12 +1,11 @@
 import pykka
-import os
 import json
 import utils.settings as settings
-import utils.log4py as log4py
+import log4p
 
 
 def parallel_run(pool_size, call_limit, lists):
-    logger = log4py.getLogger(__file__, level=settings.DEBUG_LEVEL)
+    logger = log4p.GetLogger(__name__, logging_level=settings.DEBUG_LEVEL, config=settings.LOGGING_CONFIG)
     adders = [DBAdder.start().proxy() for _ in range(pool_size)]
 
     results = []
@@ -20,13 +19,13 @@ def parallel_run(pool_size, call_limit, lists):
 
     pykka.ActorRegistry.stop_all()
 
-    logger.debug(gathered_results)
+    logger.logger.debug(gathered_results)
 
     return gathered_results
 
 
 class DBAdder(pykka.ThreadingActor):
-    __logger = log4py.getLogger(__file__, level=settings.DEBUG_LEVEL)
+    __logger = log4p.GetLogger(__name__, logging_level=settings.DEBUG_LEVEL, config=settings.LOGGING_CONFIG)
 
     def __init__(self):
         super().__init__()
@@ -38,8 +37,8 @@ class DBAdder(pykka.ThreadingActor):
 
             # add code to connect to mongodb
 
-            self.__logger.debug(f'Success: {res}')
+            self.__logger.logger.debug(f'Success: {res}')
             return True
         except Exception as e:
-            self.__logger.debug(f'Failed resolving {content}')
+            self.__logger.logger.debug(f'Failed resolving {content}')
             return e

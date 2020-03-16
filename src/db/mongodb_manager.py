@@ -1,8 +1,11 @@
 import pymongo
 import utils.settings as settings
+import log4p
 
 
 class MongoDBManager:
+    __logger = log4p.GetLogger(__name__, logging_level=settings.DEBUG_LEVEL, config=settings.LOGGING_CONFIG)
+
     def __init__(self):
         self.result = 0
 
