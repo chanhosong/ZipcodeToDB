@@ -1,6 +1,6 @@
 import utils.settings as settings
 from urllib import request
-from urllib.parse import urlencode, quote_plus
+from urllib.parse import urlencode
 import log4p
 
 
