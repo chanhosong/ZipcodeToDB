@@ -39,5 +39,5 @@ class OpenApiManager:
         for i in self.getFileName():
             cnt += len(self.getZipcode(i))
 
-        # 6,319,248 / 300,000 = 21일
+        # 6,319,248
         print(cnt)

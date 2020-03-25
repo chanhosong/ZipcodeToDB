@@ -26,6 +26,7 @@ NUM_CALL_LIMIT = 2
 # Settings for MongoDB
 MONGODB_HOST = 'mongodb://localhost:27017/'
 ADDRESS_DATABASE = 'address'
+ADDRESS_ZIPCODE = 'zipcode'
 ESTATE_DATABASE = 'estate'
 
 
