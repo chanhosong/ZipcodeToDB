@@ -3,6 +3,7 @@ import json
 import xmltodict
 import pandas as pd
 import utils.settings as settings
+import utils.key_manager as keys
 import log4p
 from api.kakao_open_apis import KakaoOpenAPIs
 from api.estate_open_apis import EstateOpenAPIs
@@ -14,12 +15,14 @@ class OpenApiManager:
     __query_column = ['시도', '시군구', '읍면', '건물번호본번', '건물번호부번']
     __kakao_Apis = KakaoOpenAPIs()
     __estate_Apis = EstateOpenAPIs()
+    __kakao_restApiKey = keys.KeyManager.getKakaoKeys()
+    __gov_restApiKey = keys.KeyManager.getGovKeys()
 
     def __init__(self):
         self.result = 0
 
     def getMapAdderess(self, query):
-        return json.loads(self.__kakao_Apis.getAddress(query))
+        return json.loads(self.__kakao_Apis.getAddress(self.__kakao_Apis[0], query))
 
     def makeQuery(self, sido):
         return list(map(lambda x: '{} {} {} {}-{}'.format(x[0], x[1], x[2], x[3], x[4])

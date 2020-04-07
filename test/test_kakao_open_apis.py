@@ -1,13 +1,16 @@
 import unittest
-from api.kakao_open_apis import KakaoOpenAPIs
 import json
+import utils.key_manager as keys
+from api.kakao_open_apis import KakaoOpenAPIs
 
 
 class TestKakaoOpenAPIs(unittest.TestCase):
+    __kakao_restApiKey = keys.KeyManager().getKakaoKeys()
+
     def test_get_address(self):
         test_query = "강원도 강릉시 유천동 760-1"
 
-        res_json = json.loads(KakaoOpenAPIs().getAddress(test_query))
+        res_json = json.loads(KakaoOpenAPIs().getAddress(self.__kakao_restApiKey[0], test_query))
 
         print(res_json)
 

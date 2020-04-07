@@ -1,3 +1,4 @@
+import pandas as pd
 import datetime
 import time
 import os
@@ -10,14 +11,13 @@ DEBUG_LEVEL = 'DEBUG'
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR_ZIPCODE = 'data/zipcode_DB/'
 DATA_DIR_ADDRESS = 'data/address/'
+
 LOGGING_CONFIG = os.path.dirname(ROOT_DIR) + '/log4p.json'
 LOGGING_DIR = 'logs/'
 
-# Date Time Format
-timestr = None
-datestr = None
-FORMAT_DATE = "%Y%m%d"
-FORMAT_DATETIME = "%Y%m%d%H%M%S"
+# Secret Keys for Open APIs
+KAKAO_SECRETKEYS = 'data/keys/kakao_secretkeys.csv'
+GOV_OPENAPI_SECRETKEYS = 'data/keys/gov_openapi_secretkeys.csv'
 
 # Number of concurrent call
 NUM_WORKER = 2
@@ -28,6 +28,12 @@ MONGODB_HOST = 'mongodb://localhost:27017/'
 ADDRESS_DATABASE = 'address'
 ADDRESS_ZIPCODE = 'zipcode'
 ESTATE_DATABASE = 'estate'
+
+# Date Time Format
+timestr = None
+datestr = None
+FORMAT_DATE = "%Y%m%d"
+FORMAT_DATETIME = "%Y%m%d%H%M%S"
 
 
 def get_time_str():
